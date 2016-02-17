@@ -49,3 +49,21 @@ gulp.task('jshintNreport', function () {
           createMissingFolders: true
       }));
 });
+
+
+
+// Clean ------------------------------------------------------------------------------------------------------
+gulp.task("clean", ["clean:tests", "clean:cov"], function (cb) {
+    console.log("// Gulp: Deleted Report Files");
+    return del([config.paths.reports]);
+});
+gulp.task("clean:tests", function (cb) {
+    console.log("// Gulp: Delete Test Report Files");
+    del([config.paths.testReport + "/**/*.*"]);
+    return del([config.paths.testReport]);
+});
+gulp.task("clean:cov", function (cb) {
+    console.log("// Gulp: Delete Coverage Report Files");
+    del([config.paths.coverageReport + "/**/*.*"]);
+    return del([config.paths.coverageReport]);
+});

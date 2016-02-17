@@ -11,6 +11,26 @@ module.exports = function (config) {
           'test/unit/*.spec.js'
         
         ],
-        reporters: ['progress', 'nyan']
+        reporters: ['progress', 'coverage', 'html', 'nyan'],
+        preprocessors: {
+            // source files, to generate coverage for 
+            // do not include tests or libraries 
+            // (these files will be instrumented by Istanbul) 
+            'src/wwwroot/*.js': ['coverage']
+        },
+
+        // Optional Configuration for HTML Reporter
+        htmlReporter: {
+            outputFile: 'reports/tests/units.html',
+
+            pageTitle: 'Unit Tests',
+            subPageTitle: 'Test All The Things'
+        },
+
+        // Optional Configuration for Coverage Reporter
+        coverageReporter: {
+            type: 'html',
+            dir: 'reports/coverage/'
+        }
     });
 };

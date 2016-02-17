@@ -14,6 +14,9 @@ module.exports = function(){
     config.paths.concatJsDest   = config.paths.webroot + "js/site.min.js";
     config.paths.concatCssDest  = config.paths.webroot + "css/site.min.css";
 
+    config.paths.reports = "./reports"
+    config.paths.testReport = config.paths.reports + "/tests";
+    config.paths.coverageReport = config.paths.reports + "/coverage";
 
     return config;
 };
