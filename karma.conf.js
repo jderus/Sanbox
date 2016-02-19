@@ -7,6 +7,13 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
         files: [ // IMPORTANT: Improper order of this array can cause karma to break.
                  // SERIOUSLY: I CANNOT STRESS THIS ENOUGH.
+          'bower_components/angular/angular.js',
+          'bower_components/angular-resource/angular-resource.js',
+          'bower_components/angular-route/angular-route.js', 
+          'bower_components/angular-mocks/angular-mocks.js',          
+          
+          'src/wwwroot/*.app.js',
+          'src/wwwroot/*.controller.js',
                  
           'test/unit/*.spec.js'
         
