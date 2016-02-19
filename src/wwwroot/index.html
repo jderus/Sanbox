@@ -6,13 +6,15 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-resource.min.js"></script>
     
-        <script type="text/javascript" src="./sandbox.app.js"></script>
 </head>
 <body ng-app="sandboxApp">
-    Sandbox some text:
-    <input type="text" ng-model="sometext" />
-    <h1>Hello {{ sometext }}</h1>
-
-
+    <div ng-controller="toyController as toy">
+            {{toy.title}}
+            <input type="text" ng-model="toy.text" />
+            <h1>Hello {{toy.text}}</h1>
+    </div>
+    
+    <script type="text/javascript" src="./sandbox.app.js"></script>
+    <script type="text/javascript" src="./toy.controller.js"></script>
 </body>
 </html>
