@@ -2,6 +2,7 @@
 var plugins = require('gulp-load-plugins')();
 var config = require("./tools/gulptasks/config.js")();     // all of our configuration vars
 
+var chalk = require('chalk');
 var del = require('del');
 var jshint = require('gulp-jshint');
 
@@ -54,7 +55,7 @@ gulp.task('jshintNreport', function () {
 
 // Clean ------------------------------------------------------------------------------------------------------
 gulp.task("clean", ["clean:tests", "clean:cov"], function (cb) {
-    console.log("// Gulp: Deleted Report Files");
+    console.log(chalk.yellow("// Gulp: Deleted Report Files"));
     return del([config.paths.reports]);
 });
 gulp.task("clean:tests", function (cb) {

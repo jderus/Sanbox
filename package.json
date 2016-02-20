@@ -5,6 +5,7 @@
     "bower": "^1.7.7"
   },
   "devDependencies": {
+    "chalk": "^1.1.1",
     "del": "2.1.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
@@ -33,9 +34,8 @@
     "requirejs": "2.1.20",
     "sinon": "1.15.4"
   },
-  "scripts" : {
+  "scripts": {
     "postinstall": "bower install",
-    
     "prestart": "npm install",
     "start": "http-server ./src/wwwroot/ -a localhost -p 8080 -c-1"
   }
