@@ -2,6 +2,10 @@ module.exports = function(){
     // this object has all our configuration settings
     var config = {};
 
+    config.ENVIRONMENT = {
+        DEV:    './dist/dev/'
+    }
+
     config.paths = {
         webroot: "./src/wwwroot/"
     };
