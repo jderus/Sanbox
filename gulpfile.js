@@ -86,4 +86,6 @@ gulp.task("build:dev", ["clean"], function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.DEV));
     gulp.src(config.paths.webroot + "*.html")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV));
+    gulp.src("./bower_components/c3/c3.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
 });
