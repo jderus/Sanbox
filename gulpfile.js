@@ -88,4 +88,6 @@ gulp.task("build:dev", ["clean"], function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.DEV));
     gulp.src("./bower_components/c3/c3.js")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
+    gulp.src("./bower_components/d3/d3.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
 });
