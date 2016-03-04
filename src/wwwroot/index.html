@@ -2,9 +2,13 @@
 <html>
 <head>
     <title>Sandbox</title>
-    <script type="text/javascript" src="./lib/angular.min.js"></script>
-    <script type="text/javascript" src="./lib/angular-route.min.js"></script>
-    <script type="text/javascript" src="./lib/angular-resource.min.js"></script>
+    <script type="text/javascript" src="./lib/angular.js"></script>
+    <script type="text/javascript" src="./lib/angular-route.js"></script>
+    <script type="text/javascript" src="./lib/angular-resource.js"></script>
+    
+    <script type="text/javascript" src="./lib/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap.css"></link>
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap-theme.css"></link>
     
 </head>
 <body ng-app="sandboxApp">
@@ -20,7 +24,7 @@
                 <th>Title</th>
             </tr>
             <tr ng-repeat="item in toy.fakedata">
-                <td>{{item.id}}</td>
+                <td class="text-danger">{{item.id}}</td>
                 <td>{{item.title}}</td>
             </tr>
         </table>

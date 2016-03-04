@@ -93,6 +93,14 @@ gulp.task("build:dev", ["clean"], function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));  
     gulp.src("./bower_components/angular-route/angular-route.js")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));     
+      
+    gulp.src("./bower_components/bootstrap/dist/js/bootstrap.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));     
+    gulp.src("./bower_components/bootstrap/dist/css/bootstrap.css")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/")); 
+    gulp.src("./bower_components/bootstrap/dist/css/bootstrap-theme.css")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));   
+        
         
     gulp.src("./bower_components/c3/c3.js")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
