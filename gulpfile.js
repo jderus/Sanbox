@@ -74,11 +74,18 @@ gulp.task("clean:cov", function (cb) {
 gulp.task("clean:dev", function (cb) {
     console.log(chalk.yellow("// Gulp: Delete Dev Dis Files"));
     del([config.ENVIRONMENT.DEV + "**/*.*"]);
+    console.log(chalk.yellow("// Gulp: Delete Prod Dis Files"));
+    del([config.ENVIRONMENT.PROD + "**/*.*"]);
     return del([config.ENVIRONMENT.DEV]);
 });
 
 
 // Build ------------------------------------------------------------------------------------------------------
+gulp.task("build", ["build:prod", "build:dev"], function (cb) {
+    // Shortcut for building all envs.
+    console.log(chalk.yellow("// Gulp: Building All"));
+});
+
 gulp.task("build:dev", ["clean"], function (cb) {
     // Will keep this really crude for now, just to flesh out across time
     console.log(chalk.yellow("// Gulp: Building Dev"));
@@ -106,4 +113,13 @@ gulp.task("build:dev", ["clean"], function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
     gulp.src("./bower_components/d3/d3.js")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
+});
+
+gulp.task("build:prod", ["clean"], function (cb) {
+    // we will probably need to drive towards minification here.
+    console.log(chalk.yellow("// Gulp: Building Prod"));
+    gulp.src(config.paths.webroot + "*.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD));
+    gulp.src(config.paths.webroot + "*.html")
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD));
 });
