@@ -3,7 +3,8 @@ module.exports = function(){
     var config = {};
 
     config.ENVIRONMENT = {
-        DEV:    './dist/dev/'
+        DEV:    './dist/dev/',
+        PROD:   './dist/prod/'
     }
 
     config.paths = {
