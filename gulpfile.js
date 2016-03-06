@@ -57,7 +57,7 @@ gulp.task('jshintNreport', function () {
 
 
 // Clean ------------------------------------------------------------------------------------------------------
-gulp.task("clean", ["clean:tests", "clean:cov", "clean:dev"], function (cb) {
+gulp.task("clean", ["clean:tests", "clean:cov", "clean:env"], function (cb) {
     console.log(chalk.yellow("// Gulp: Deleted Files"));
     return del([config.paths.reports]);
 });
@@ -71,12 +71,14 @@ gulp.task("clean:cov", function (cb) {
     del([config.paths.coverageReport + "/**/*.*"]);
     return del([config.paths.coverageReport]);
 });
-gulp.task("clean:dev", function (cb) {
-    console.log(chalk.yellow("// Gulp: Delete Dev Dis Files"));
+gulp.task("clean:env", function (cb) {
+    console.log(chalk.yellow("// Gulp: Delete Dev Dist Files"));
     del([config.ENVIRONMENT.DEV + "**/*.*"]);
-    console.log(chalk.yellow("// Gulp: Delete Prod Dis Files"));
+    del([config.ENVIRONMENT.DEV]);
+    console.log(chalk.yellow("// Gulp: Delete Prod Dist Files"));
     del([config.ENVIRONMENT.PROD + "**/*.*"]);
-    return del([config.ENVIRONMENT.DEV]);
+    del([config.ENVIRONMENT.PROD]);
+    return;
 });
 
 
@@ -122,4 +124,24 @@ gulp.task("build:prod", ["clean"], function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.PROD));
     gulp.src(config.paths.webroot + "*.html")
         .pipe(gulp.dest(config.ENVIRONMENT.PROD));
+        
+    gulp.src("./bower_components/angular/angular.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
+    gulp.src("./bower_components/angular-resource/angular-resource.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));  
+    gulp.src("./bower_components/angular-route/angular-route.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));     
+      
+    gulp.src("./bower_components/bootstrap/dist/js/bootstrap.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));     
+    gulp.src("./bower_components/bootstrap/dist/css/bootstrap.css")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/")); 
+    gulp.src("./bower_components/bootstrap/dist/css/bootstrap-theme.css")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));   
+        
+        
+    gulp.src("./bower_components/c3/c3.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
+    gulp.src("./bower_components/d3/d3.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
 });
