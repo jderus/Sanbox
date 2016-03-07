@@ -88,7 +88,7 @@ gulp.task("build", ["build:prod", "build:dev"], function (cb) {
     console.log(chalk.yellow("// Gulp: Building All"));
 });
 
-gulp.task("build:dev", ["clean"], function (cb) {
+gulp.task("build:dev", function (cb) {
     // Will keep this really crude for now, just to flesh out across time
     console.log(chalk.yellow("// Gulp: Building Dev"));
     gulp.src(config.paths.webroot + "*.js")
@@ -115,9 +115,11 @@ gulp.task("build:dev", ["clean"], function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
     gulp.src("./bower_components/d3/d3.js")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
+    
+    return;
 });
 
-gulp.task("build:prod", ["clean"], function (cb) {
+gulp.task("build:prod", function (cb) {
     // we will probably need to drive towards minification here.
     console.log(chalk.yellow("// Gulp: Building Prod"));
     gulp.src(config.paths.webroot + "*.js")
@@ -144,4 +146,6 @@ gulp.task("build:prod", ["clean"], function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
     gulp.src("./bower_components/d3/d3.js")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
+        
+    return;
 });
