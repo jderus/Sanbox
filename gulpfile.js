@@ -21,7 +21,7 @@ function getFileTask(task, param) {
 gulp.task('hello', getFileTask('hello'));
 
 // Testing ----------------------------------------------------------------------------------------------------
-gulp.task('test', function (done) {
+gulp.task('test', ['jshintNreport', 'jshintspecsNreport'], function (done) {
     new Server({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true //set to false to debug tests
@@ -44,7 +44,7 @@ gulp.task('jshintspecs', function () {
       .pipe(jshint.reporter('jshint-stylish'));
 });
 
-// TODO: Figure out why this isn't working.
+// TODO: Figure out how to make this work when dir doesnt exist.
 gulp.task('jshintNreport', function () {
     return gulp.src(config.paths.webroot + "*.js")
       .pipe(jshint())
@@ -54,6 +54,15 @@ gulp.task('jshintNreport', function () {
       }));
 });
 
+// TODO: Figure out how to make this work when dir doesnt exist.
+gulp.task('jshintspecsNreport', function () {
+    return gulp.src("./test/**/*.js")
+      .pipe(jshint())
+      .pipe(jshint.reporter('gulp-jshint-html-reporter', {
+          filename: __dirname + '/reports/jshint/jshintspecs-output.html',
+          createMissingFolders: true
+      }));
+});
 
 
 // Clean ------------------------------------------------------------------------------------------------------
