@@ -8,6 +8,15 @@ var jshint = require('gulp-jshint');
 
 var Server = require('karma').Server;
 
+// plugins for browserify+uglify following recipe.
+var browserify = require('browserify');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
+var gutil = require('gulp-util');
+
+
 // Use a function to get tasks defined in separate files and modules
 function getFileTask(task, param) {
     if (param == undefined) { 
@@ -29,6 +38,25 @@ gulp.task('test', ['jshintNreport', 'jshintspecsNreport'], function (done) {
         done();
     }).start();
     
+});
+
+// Browserify and Uglify with Sourcemaps -----------------------------------------------------------------------
+gulp.task('browglify', function () {
+  // set up the browserify instance on a task basis
+  var b = browserify({
+    entries: './src/wwwroot/toy.controller.js',
+    debug: true
+  });
+
+  return b.bundle()
+    .pipe(source("app.js"))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+        // Add transformation tasks to the pipeline here.
+        .pipe(uglify())
+        .on('error', gutil.log)
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('./dist/js/'));
 });
 
 // Linting ------------------------------------------------------------------------------------------------------
