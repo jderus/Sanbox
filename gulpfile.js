@@ -16,6 +16,11 @@ var uglify = require('gulp-uglify');
 var sourcemaps = require('gulp-sourcemaps');
 var gutil = require('gulp-util');
 
+// plugins for sassing.
+var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
+var sassdoc = require('sassdoc');
+
 
 // Use a function to get tasks defined in separate files and modules
 function getFileTask(task, param) {
@@ -49,7 +54,7 @@ gulp.task('browglify', function () {
   });
 
   return b.bundle()
-    .pipe(source("app.js"))
+    .pipe(source("app;.js"))
     .pipe(buffer())
     .pipe(sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
@@ -185,4 +190,34 @@ gulp.task("build:prod", function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
         
     return;
+});
+
+
+// Sassing WIP ----------------------------------------------------------------------------------------------------
+var sassinput = './src/styles/*.scss';
+var sassoutput = './dist/css';
+var sassOptions = {
+  errLogToConsole: true,
+  outputStyle: 'expanded'
+};
+
+gulp.task('sass', function () {
+  return gulp
+    .src(sassinput)
+    .pipe(sourcemaps.init())
+    .pipe(sass(sassOptions).on('error', sass.logError))
+    .pipe(sourcemaps.write())
+    //.pipe(sourcemaps.write('/maps')) // we probably dont want to be doing both, this is just an illustration.
+    .pipe(gulp.dest(sassoutput));
+});
+
+var sassdocOptions = {
+  dest: './docs/sassdoc'
+};
+
+gulp.task('sassdoc', function () {
+  return gulp
+    .src(sassinput)
+    .pipe(sassdoc(sassdocOptions))
+    .resume();
 });
