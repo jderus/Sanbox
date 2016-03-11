@@ -221,3 +221,11 @@ gulp.task('sassdoc', function () {
     .pipe(sassdoc(sassdocOptions))
     .resume();
 });
+
+// JSDOC WIP ------------------------------------------------------------------------------------------------------
+var jsdoc = require('gulp-jsdoc3'); 
+gulp.task('jsdoc', function (cb) {
+    var jsdocconfig = require('./jsdoc.json');
+    gulp.src(['./src/wwwroot/*.js'], {read: false})
+        .pipe(jsdoc(jsdocconfig, cb));
+});

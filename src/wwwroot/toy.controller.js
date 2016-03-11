@@ -1,3 +1,7 @@
+/**
+ * sandboxApp toyController
+ * @module sandboxApp
+ */
 (function () {
     'use strict';
 

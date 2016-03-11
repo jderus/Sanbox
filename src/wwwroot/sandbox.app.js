@@ -1,3 +1,7 @@
+/**
+ * sandboxApp Angular App
+ * @module sandboxApp
+ */
 (function () {
     'use strict';
 
