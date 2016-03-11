@@ -1,3 +1,7 @@
+/**
+ * sandboxApp FiddleService module.
+ * @module sandboxApp
+ */
 (function () {
     'use strict';
 
@@ -7,6 +11,9 @@
 
     fiddleService.$inject = ['$http', '$resource'];
 
+    /**  
+     * @constructor
+    */
     function fiddleService($http, $resource) {
         var service = {
             getData: getData
