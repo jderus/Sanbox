@@ -16,6 +16,11 @@
         vm.title = null;
         vm.text = null;
         vm.fakedata = [];
+        
+        // grid functionality default.
+        $scope.sortType    = 'id';
+        $scope.sortReverse = false;
+        $scope.searchGrid  = '';
 
         activate();
 
