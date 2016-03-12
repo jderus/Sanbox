@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="./lib/bootstrap.css"></link>
     <link rel="stylesheet" type="text/css" href="./lib/bootstrap-theme.css"></link>
     
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
 <body ng-app="sandboxApp">
     <div ng-controller="toyController as toy">
@@ -20,15 +21,41 @@
         <sand></sand>
             
         <hr />
-        <table> 
+        <form>
+            <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"><i class="fa fa-search"></i></div>
+
+                <input type="text" class="form-control" placeholder="Search da datas" ng-model="searchGrid">
+
+            </div>      
+            </div>
+        </form>
+        <table class="table table-bordered table-striped">
+            <thead>
             <tr>
-                <th>ID</th>
-                <th>Title</th>
+                <td>
+                    <a href="#" ng-click="sortType = 'id'; sortReverse = !sortReverse ">
+                    ID 
+                    <span ng-show="sortType == 'id' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'id' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
+                <td>
+                    <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+                    Title 
+                    <span ng-show="sortType == 'title' && !sortReverse" class="fa fa-caret-down"></span>
+                    <span ng-show="sortType == 'title' && sortReverse" class="fa fa-caret-up"></span>
+                    </a>
+                </td>
             </tr>
-            <tr ng-repeat="item in toy.fakedata">
-                <td class="text-danger">{{item.id}}</td>
-                <td>{{item.title}}</td>
-            </tr>
+            </thead> 
+            <tbody>
+                <tr ng-repeat="item in toy.fakedata | orderBy:sortType:sortReverse | filter:searchGrid">
+                    <td class="text-danger">{{item.id}}</td>
+                    <td>{{item.title}}</td>
+                </tr>
+            </tbody>
         </table>
             
     </div> 
