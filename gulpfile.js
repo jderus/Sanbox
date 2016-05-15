@@ -182,7 +182,9 @@ gulp.task("build:prod", function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/")); 
     gulp.src("./bower_components/bootstrap/dist/css/bootstrap-theme.css")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));   
-        
+   
+    gulp.src("./bower_components/jquery/dist/jquery.min.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));   
         
     gulp.src("./bower_components/c3/c3.js")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
