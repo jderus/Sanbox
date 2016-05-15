@@ -9,3 +9,7 @@ Don't get it in your shoes!
 
 ## Notes
 Be Awesome.
+
+## Work it
+1. gulp build
+2. npm start

@@ -6,6 +6,7 @@
     <script type="text/javascript" src="./lib/angular-route.js"></script>
     <script type="text/javascript" src="./lib/angular-resource.js"></script>
     
+    <script type="text/javascript" src="./lib/jquery.min.js"></script>
     <script type="text/javascript" src="./lib/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" href="./lib/bootstrap.css"></link>
     <link rel="stylesheet" type="text/css" href="./lib/bootstrap-theme.css"></link>
@@ -13,24 +14,42 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
 <body ng-app="sandboxApp">
-    <div ng-controller="toyController as toy">
-        {{toy.title}}
-        <input type="text" ng-model="toy.text" />
-        <h1>Hello {{toy.text}}</h1>
-        <br>
-        <sand></sand>
-            
-        <hr />
-        <form>
-            <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-addon"><i class="fa fa-search"></i></div>
-
-                <input type="text" class="form-control" placeholder="Search da datas" ng-model="searchGrid">
-
-            </div>      
+    <div ng-controller="toyController as toy" class="container">
+        <div class="row">
+            <div class="col-lg-12"> 
+                <h1>{{toy.title}}</h1>
             </div>
-        </form>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-12"> 
+                Text: <input type="text" ng-model="toy.text" />
+                <h3>Hello {{toy.text}}</h3>
+                <br>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-6"> 
+                <sand></sand>
+            </div>
+                        <div class="col-lg-6" id="d3loc">
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-12"> 
+                <form>
+                    <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search da datas" ng-model="searchGrid">
+                    </div>      
+                    </div>
+                </form>
+            </div>
+        </div>
+            
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
@@ -59,6 +78,9 @@
         </table>
             
     </div> 
+    
+    
+    
     <script type="text/javascript" src="./sandbox.app.js"></script>
     <script type="text/javascript" src="./toy.controller.js"></script>
     <script type="text/javascript" src="./fiddle.service.js"></script>
