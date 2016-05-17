@@ -12,6 +12,19 @@
     <link rel="stylesheet" type="text/css" href="./lib/bootstrap-theme.css"></link>
     
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+    
+    <style>
+    .chart rect {
+        fill: steelblue;
+        }
+
+        .chart text {
+        fill: white;
+        font: 10px sans-serif;
+        text-anchor: end;
+        }
+    </style>
+    
 </head>
 <body ng-app="sandboxApp">
     <div ng-controller="toyController as toy" class="container">
@@ -30,10 +43,13 @@
         </div>
         <hr />
         <div class="row">
-            <div class="col-lg-6"> 
+            <div class="col-lg-3"> 
                 <sand></sand>
             </div>
-                        <div class="col-lg-6" id="d3loc">
+            <div class="col-lg-4" id="d3loc">
+            </div>
+            <div class="col-lg-5">
+                <svg class="chart"></svg>
             </div>
         </div>
         <hr />

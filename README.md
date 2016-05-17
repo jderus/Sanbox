@@ -10,6 +10,9 @@ Don't get it in your shoes!
 ## Notes
 Be Awesome.
 
+## TODOs
+    * Fix Sassing
+
 ## Work it
 1. gulp build
 2. npm start
