@@ -9,3 +9,12 @@ h1 {
     padding: 0.5em;
 }
 
+.chart rect {
+  fill: steelblue;
+}
+
+.chart text {
+  fill: white;
+  font: 10px sans-serif;
+  text-anchor: end;
+}
