@@ -66,7 +66,18 @@
 
             var width = 420,
                 barHeight = 20;
+            var padding = 20;
 
+			//Create scale functions
+			var xScale = d3.scale.linear()
+								 .domain([0, d3.max(data, function(d) { return d[0]; })])
+								 .range([padding, width - padding * 2]);
+
+			var yScale = d3.scale.linear()
+								 .domain([0, d3.max(data, function(d) { return d[1]; })])
+								 .range([barHeight - padding, padding]);
+
+            //drawing actual chart
             var x = d3.scale.linear()
                 .domain([0, d3.max(data)])
                 .range([0, width]);
@@ -74,10 +85,40 @@
             var chart = d3.select(".chart")
                 .attr("width", width)
                 .attr("height", barHeight * data.length);
+                
+			//Define X axis
+			var xAxis = d3.svg.axis()
+							  .scale(xScale)
+							  .orient("bottom");
+
+			//Create labels
+			chart.selectAll("text")
+			   .data(data)
+			   .enter()
+			   .append("text")
+			   .text(function(d) {
+			   		return d[0] + "," + d[1];
+			   })
+			   .attr("x", function(d) {
+			   		return xScale(d[0]);
+			   })
+			   .attr("y", function(d) {
+			   		return yScale(d[1]);
+			   })
+			   .attr("font-family", "sans-serif")
+			   .attr("font-size", "11px")
+			   .attr("fill", "red");
+
+			//Create X axis
+			chart.append("g")
+				.attr("class", "axis")
+				.attr("transform", "translate(0," + (barHeight - padding) + ")")
+				.call(xAxis);
+
 
             var bar = chart.selectAll("g")
                 .data(data)
-            .enter().append("g")
+                .enter().append("g")
                 .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
 
             bar.append("rect")
