@@ -32,6 +32,7 @@
             
             drawStuff();
             drawBarStuff();
+            drawBarAxisStuff();
             
             fiddleService.getData().$promise.then(
                 function (value) { 
@@ -62,34 +63,58 @@
         }
         
         function drawBarStuff() {
+             var data = [4, 8, 15, 16, 23, 42];
+ 
+             var width = 420,
+                 height = 20;
+ 
+             var x = d3.scale.linear()
+                 .domain([0, d3.max(data)])
+                 .range([0, width]);
+ 
+             var chart = d3.select(".chart")
+                 .attr("width", width)
+                 .attr("height", height * data.length);
+ 
+             var bar = chart.selectAll("g")
+                 .data(data)
+                 .enter().append("g")
+                 .attr("transform", function(d, i) { return "translate(0," + i * height + ")"; });
+ 
+             bar.append("rect")
+                 .attr("width", x)
+                 .attr("height", height - 1);
+ 
+             bar.append("text")
+                 .attr("x", function(d) { return x(d) - 3; })
+                 .attr("y", height / 2)
+                 .attr("dy", ".35em")
+                 .text(function(d) { return d; });
+             
+         }
+        
+        function drawBarAxisStuff() {
             var data = [4, 8, 15, 16, 23, 42];
 
             var width = 420,
-                barHeight = 20;
+                height = 20;
             var padding = 20;
 
 			//Create scale functions
 			var xScale = d3.scale.linear()
-								 .domain([0, d3.max(data, function(d) { return d[0]; })])
+								 .domain([0, d3.max(data)])
 								 .range([padding, width - padding * 2]);
 
-			var yScale = d3.scale.linear()
-								 .domain([0, d3.max(data, function(d) { return d[1]; })])
-								 .range([barHeight - padding, padding]);
 
-            //drawing actual chart
-            var x = d3.scale.linear()
-                .domain([0, d3.max(data)])
-                .range([0, width]);
-
-            var chart = d3.select(".chart")
-                .attr("width", width)
-                .attr("height", barHeight * data.length);
                 
 			//Define X axis
 			var xAxis = d3.svg.axis()
 							  .scale(xScale)
 							  .orient("bottom");
+                              
+             var chart = d3.select(".axischart")
+                 .attr("width", width)
+                 .attr("height", height * data.length);
 
 			//Create labels
 			chart.selectAll("text")
@@ -97,14 +122,14 @@
 			   .enter()
 			   .append("text")
 			   .text(function(d) {
-			   		return d[0] + "," + d[1];
+			   		return d;
 			   })
 			   .attr("x", function(d) {
-			   		return xScale(d[0]);
+			   		return xScale(d);
 			   })
-			   .attr("y", function(d) {
-			   		return yScale(d[1]);
-			   })
+			//    .attr("y", function(d) {
+			//    		return yScale(d[1]);
+			//    })
 			   .attr("font-family", "sans-serif")
 			   .attr("font-size", "11px")
 			   .attr("fill", "red");
@@ -112,25 +137,8 @@
 			//Create X axis
 			chart.append("g")
 				.attr("class", "axis")
-				.attr("transform", "translate(0," + (barHeight - padding) + ")")
-				.call(xAxis);
-
-
-            var bar = chart.selectAll("g")
-                .data(data)
-                .enter().append("g")
-                .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
-
-            bar.append("rect")
-                .attr("width", x)
-                .attr("height", barHeight - 1);
-
-            bar.append("text")
-                .attr("x", function(d) { return x(d) - 3; })
-                .attr("y", barHeight / 2)
-                .attr("dy", ".35em")
-                .text(function(d) { return d; });
-            
+				.attr("transform", "translate(0," + (height - padding) + ")")
+				.call(xAxis);            
         }
         
     }
