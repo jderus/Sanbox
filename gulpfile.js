@@ -125,9 +125,14 @@ gulp.task("clean:env", function (cb) {
 
 
 // Build ------------------------------------------------------------------------------------------------------
-gulp.task("build", ["sass","build:prod", "build:dev"], function (cb) {
+gulp.task("build", ["build:prod", "build:dev"], function (cb) {
     // Shortcut for building all envs.
     console.log(chalk.yellow("// Gulp: Building All"));
+});
+
+// Watch task
+gulp.task("buildwatch",function() {
+    gulp.watch("./src/wwwroot/*.*",["build"]);
 });
 
 gulp.task("build:dev", function (cb) {
@@ -215,6 +220,13 @@ gulp.task('sass', function () {
     .pipe(gulp.dest(sassoutputprod));
 });
 
+// Sassing Watch task
+gulp.task('sasswatch',function() {
+    gulp.watch(sassinput,['sass']);
+});
+
+
+// Sassdoc WIP ----------------------------------------------------------------------------------------------------
 var sassdocOptions = {
   dest: './docs/sassdoc'
 };
@@ -225,6 +237,7 @@ gulp.task('sassdoc', function () {
     .pipe(sassdoc(sassdocOptions))
     .resume();
 });
+
 
 // JSDOC WIP ------------------------------------------------------------------------------------------------------
 var jsdoc = require('gulp-jsdoc3'); 
