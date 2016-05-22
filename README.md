@@ -11,7 +11,7 @@ Don't get it in your shoes!
 Be Awesome.
 
 ## TODOs
-    * Fix Sassing
+* concurrently and watch
 
 ## Work it
 1. gulp build

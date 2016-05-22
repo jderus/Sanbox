@@ -125,7 +125,7 @@ gulp.task("clean:env", function (cb) {
 
 
 // Build ------------------------------------------------------------------------------------------------------
-gulp.task("build", ["build:prod", "build:dev"], function (cb) {
+gulp.task("build", ["sass","build:prod", "build:dev"], function (cb) {
     // Shortcut for building all envs.
     console.log(chalk.yellow("// Gulp: Building All"));
 });
@@ -197,7 +197,8 @@ gulp.task("build:prod", function (cb) {
 
 // Sassing WIP ----------------------------------------------------------------------------------------------------
 var sassinput = './src/styles/*.scss';
-var sassoutput = './dist/css';
+var sassoutput = './dist/dev/css';
+var sassoutputprod = './dist/prod/css'
 var sassOptions = {
   errLogToConsole: true,
   outputStyle: 'expanded'
@@ -210,7 +211,8 @@ gulp.task('sass', function () {
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(sourcemaps.write())
     //.pipe(sourcemaps.write('/maps')) // we probably dont want to be doing both, this is just an illustration.
-    .pipe(gulp.dest(sassoutput));
+    .pipe(gulp.dest(sassoutput))
+    .pipe(gulp.dest(sassoutputprod));
 });
 
 var sassdocOptions = {
