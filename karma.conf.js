@@ -3,14 +3,16 @@ module.exports = function (config) {
         // base path, that will be used to resolve files and exclude
         basePath: './',
 
-        browsers: ['PhantomJS'], //Chrome works. PhantomJS has unexpected token. IE has major probs.
+        browsers: ['PhantomJS'], //['Chrome'], //Chrome works. PhantomJS has unexpected token. IE has major probs.
         frameworks: ['jasmine'],
         files: [ // IMPORTANT: Improper order of this array can cause karma to break.
                  // SERIOUSLY: I CANNOT STRESS THIS ENOUGH.
           'bower_components/angular/angular.js',
           'bower_components/angular-resource/angular-resource.js',
           'bower_components/angular-route/angular-route.js', 
-          'bower_components/angular-mocks/angular-mocks.js',          
+          'bower_components/angular-mocks/angular-mocks.js',
+          
+          'bower_components/d3/d3.js',          
           
           'src/wwwroot/sand.directive.js',
           'src/wwwroot/*.app.js',

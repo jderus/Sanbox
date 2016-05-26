@@ -20,9 +20,9 @@
         vm.d3dataset = [ 5, 10, 15, 20, 25 ];
         
         // grid functionality default.
-        $scope.sortType    = 'id';
-        $scope.sortReverse = false;
-        $scope.searchGrid  = '';
+        vm.sortType    = 'id';
+        vm.sortReverse = false;
+        vm.searchGrid  = '';
 
         activate();
 
