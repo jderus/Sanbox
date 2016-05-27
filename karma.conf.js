@@ -12,6 +12,7 @@ module.exports = function (config) {
           'bower_components/angular-route/angular-route.js', 
           'bower_components/angular-mocks/angular-mocks.js',
           
+          'bower_components/c3/c3.js', 
           'bower_components/d3/d3.js',          
           
           'src/wwwroot/sand.directive.js',
@@ -22,7 +23,7 @@ module.exports = function (config) {
           'test/unit/*.spec.js'
         
         ],
-        reporters: ['progress', 'coverage', 'html', 'nyan'],
+        reporters: ['progress', 'coverage', 'html'],
         preprocessors: {
             // source files, to generate coverage for 
             // do not include tests or libraries 
