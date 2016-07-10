@@ -156,7 +156,9 @@ gulp.task("build:dev", function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/")); 
     gulp.src("./bower_components/bootstrap/dist/css/bootstrap-theme.css")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));   
-        
+    
+    gulp.src("./bower_components/jquery/dist/jquery.min.js")
+        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));   
         
     gulp.src("./bower_components/c3/c3.js")
         .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
@@ -175,26 +177,26 @@ gulp.task("build:prod", function (cb) {
         .pipe(gulp.dest(config.ENVIRONMENT.PROD));
         
     gulp.src("./bower_components/angular/angular.js")
-        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD + "lib/"));
     gulp.src("./bower_components/angular-resource/angular-resource.js")
-        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));  
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD + "lib/"));  
     gulp.src("./bower_components/angular-route/angular-route.js")
-        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));     
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD + "lib/"));     
       
     gulp.src("./bower_components/bootstrap/dist/js/bootstrap.js")
-        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));     
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD + "lib/"));     
     gulp.src("./bower_components/bootstrap/dist/css/bootstrap.css")
-        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/")); 
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD + "lib/")); 
     gulp.src("./bower_components/bootstrap/dist/css/bootstrap-theme.css")
-        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));   
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD + "lib/"));   
    
     gulp.src("./bower_components/jquery/dist/jquery.min.js")
-        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));   
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD + "lib/"));   
         
     gulp.src("./bower_components/c3/c3.js")
-        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD + "lib/"));
     gulp.src("./bower_components/d3/d3.js")
-        .pipe(gulp.dest(config.ENVIRONMENT.DEV + "lib/"));
+        .pipe(gulp.dest(config.ENVIRONMENT.PROD + "lib/"));
         
     return;
 });

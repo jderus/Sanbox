@@ -8,35 +8,44 @@
     
     <script type="text/javascript" src="./lib/jquery.min.js"></script>
     <script type="text/javascript" src="./lib/bootstrap.js"></script>
-    <link rel="stylesheet" type="text/css" href="./lib/bootstrap.css"></link>
-    <link rel="stylesheet" type="text/css" href="./lib/bootstrap-theme.css"></link>
-    
+
+    <!--<link rel="stylesheet" type="text/css" href="./lib/bootstrap.css"></link>
+    <link rel="stylesheet" type="text/css" href="./lib/bootstrap-theme.css"></link>-->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.6/paper/bootstrap.css"></link>
+
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
     
 </head>
 <body ng-app="sandboxApp">
     <div ng-controller="toyController as toy" class="container">
-        <div class="row">
-            <div class="col-lg-12"> 
-                <h1>{{toy.title}}</h1>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">{{toy.title}}</a>
+                </div>
             </div>
-        </div>
-        <hr />
+        </nav> 
         <div class="row">
             <div class="col-lg-5"> 
                 Text: <input type="text" ng-model="toy.text" />
                 <h3>Hello {{toy.text}}</h3>
                 <br>
             </div>
-            <div class="col-lg-3"> 
+            <div class="col-lg-7"> 
                 <sand></sand>
-            </div>
-            <div class="col-lg-4" id="d3loc">
             </div>
         </div>
         <hr />
         <div class="row">
             <div class="col-lg-12">
+                <h4>D3js</h4>
+            </div>
+        </div>
+        <div class="row" ng-controller="d3Controller as d3">
+            <br /> <br />
+            <div class="col-lg-6" id="d3loc">
+            </div>
+            <div class="col-lg-6">
                 <svg class="chart"></svg>
             </div>
         </div>
@@ -92,6 +101,7 @@
     
     <script type="text/javascript" src="./sandbox.app.js"></script>
     <script type="text/javascript" src="./toy.controller.js"></script>
+    <script type="text/javascript" src="./d3.controller.js"></script>
     <script type="text/javascript" src="./fiddle.service.js"></script>
     
     <script type="text/javascript" src="./sand.directive.js"></script>   
